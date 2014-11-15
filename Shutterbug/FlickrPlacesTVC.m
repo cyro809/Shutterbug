@@ -75,16 +75,13 @@ titleForHeaderInSection:(NSInteger)section
 {
     // we must be sure to use the same identifier here as in the storyboard!
     static NSString *CellIdentifier = @"Flickr Photo Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier
+                                                            forIndexPath:indexPath];
     
-    // Configure the cell...
+    NSDictionary *place = self.placesByCountry[self.countries[indexPath.section]][indexPath.row];
     
-    // get the photo out of our Model
-    NSDictionary *photo = self.places[indexPath.row];
     
-    // update UILabels in the UITableViewCell
-    // valueForKeyPath: supports "dot notation" to look inside dictionaries at other dictionaries
-    NSArray *placesInfo = [[photo valueForKeyPath:FLICKR_PLACE_NAME] componentsSeparatedByString:@", "];
+    NSArray *placesInfo = [[place valueForKeyPath:FLICKR_PLACE_NAME] componentsSeparatedByString:@", "];
     NSString *title = [placesInfo objectAtIndex:0];
     NSLog(@"%@", title);
     NSString *subtitle = [NSString stringWithFormat:@"%@, %@", [placesInfo objectAtIndex:1], [placesInfo objectAtIndex:2]];
@@ -145,15 +142,7 @@ titleForHeaderInSection:(NSInteger)section
         // find out which row in which section we're seguing from
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         if (indexPath) {
-            // found it ... are we doing the Display Photo segue?
-            if ([segue.identifier isEqualToString:@"Display Photo"]) {
-                // yes ... is the destination an ImageViewController?
-                if ([segue.destinationViewController isKindOfClass:[ImageViewController class]]) {
-                    // yes ... then we know how to prepare for that segue!
-                    [self prepareImageViewController:segue.destinationViewController
-                                      toDisplayPhoto:self.places[indexPath.row]];
-                }
-            }
+            
             if ([segue.identifier isEqualToString:@"Flickr Place Photos Cell"]) {
                 [self preparePlacePhotosTableViewController:segue.destinationViewController
                                                    forPlace:self.placesByCountry[self.countries[indexPath.section]][indexPath.row]];
