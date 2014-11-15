@@ -10,4 +10,8 @@
 
 @interface Helpers : FlickrFetcher
 
++ (NSArray *)sortPlaces:(NSArray *)places;
++ (NSDictionary *)placesByCountries:(NSArray *)places;
++ (NSArray *)countriesFromPlacesByCountry:(NSDictionary *)placesByCountry;
+
 @end

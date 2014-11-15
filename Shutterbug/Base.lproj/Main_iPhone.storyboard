@@ -37,7 +37,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="MHy-Ij-sbf" kind="push" id="XP5-3B-Ewe"/>
+                                    <segue destination="MHy-Ij-sbf" kind="push" identifier="PushToPlacePhotos" id="eG7-yJ-IUt"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -100,10 +100,10 @@
             </objects>
             <point key="canvasLocation" x="1619" y="-93"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation Controller - Navigation Controller-->
         <scene sceneID="7wB-gD-anc">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LGo-ff-1Fn" sceneMemberID="viewController">
+                <navigationController title="Navigation Controller" automaticallyAdjustsScrollViewInsets="NO" id="LGo-ff-1Fn" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="RkZ-kW-qRQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -111,7 +111,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="6wp-9C-aAd" kind="relationship" relationship="rootViewController" id="2p9-zQ-Rj4"/>
+                        <segue destination="6wp-9C-aAd" kind="relationship" relationship="rootViewController" id="UbW-L0-gMy"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uZn-sW-cIk" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -58,7 +58,7 @@
         // update the Model (and thus our UI), but do so back on the main queue
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.refreshControl endRefreshing]; // stop the spinner
-            self.photos = photos;
+            self.places = photos;
         });
     });
 }

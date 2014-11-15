@@ -11,6 +11,6 @@
 @interface FlickrPlacesTVC : UITableViewController
 
 // Model of this MVC (it can be publicly set)
-@property (nonatomic, strong) NSArray *photos; // of Flickr photo NSDictionary
+@property (nonatomic, strong) NSArray *places; // of Flickr photo NSDictionary
 
 @end

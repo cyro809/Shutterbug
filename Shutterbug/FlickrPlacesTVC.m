@@ -10,6 +10,7 @@
 #import "FlickrFetcher.h"
 #import "ImageViewController.h"
 #import "ImagesPlacesViewController.h"
+#import "Helpers.h"
 
 @interface FlickrPlacesTVC()
 
@@ -22,9 +23,18 @@
 
 // whenever our Model is set, must update our View
 
-- (void)setPhotos:(NSArray *)photos
+- (void)setPlaces:(NSArray *)places
 {
-    _photos = photos;
+    _places = [Helpers sortPlaces:places];
+    if (_places == places) return;
+    
+    _places = [Helpers sortPlaces:places];
+    
+    self.placesByCountry = [Helpers placesByCountries:_places];
+    self.countries = [Helpers countriesFromPlacesByCountry:self.placesByCountry];
+    
+    [self.tableView reloadData];
+    
     [self.tableView reloadData];
 }
 
@@ -46,13 +56,19 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return [self.countries count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section (we only have one)
-    return [self.photos count];
+    return [self.placesByCountry[self.countries[section]] count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView
+titleForHeaderInSection:(NSInteger)section
+{
+    return self.countries[section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -64,7 +80,7 @@
     // Configure the cell...
     
     // get the photo out of our Model
-    NSDictionary *photo = self.photos[indexPath.row];
+    NSDictionary *photo = self.places[indexPath.row];
     
     // update UILabels in the UITableViewCell
     // valueForKeyPath: supports "dot notation" to look inside dictionaries at other dictionaries
@@ -97,7 +113,7 @@
     // is the Detail is an ImageViewController?
     if ([detail isKindOfClass:[ImageViewController class]]) {
         // yes ... we know how to update that!
-        [self prepareImageViewController:detail toDisplayPhoto:self.photos[indexPath.row]];
+        [self prepareImageViewController:detail toDisplayPhoto:self.places[indexPath.row]];
     }
 }
 
@@ -135,12 +151,12 @@
                 if ([segue.destinationViewController isKindOfClass:[ImageViewController class]]) {
                     // yes ... then we know how to prepare for that segue!
                     [self prepareImageViewController:segue.destinationViewController
-                                      toDisplayPhoto:self.photos[indexPath.row]];
+                                      toDisplayPhoto:self.places[indexPath.row]];
                 }
             }
             if ([segue.identifier isEqualToString:@"Flickr Place Photos Cell"]) {
                 [self preparePlacePhotosTableViewController:segue.destinationViewController
-                                                   forPlace:self.photos[indexPath.section]][indexPath.row]];
+                                                   forPlace:self.placesByCountry[self.countries[indexPath.section]][indexPath.row]];
             }
         }
     }
