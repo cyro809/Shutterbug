@@ -37,7 +37,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="MHy-Ij-sbf" kind="push" identifier="PushToPlacePhotos" id="eG7-yJ-IUt"/>
+                                    <segue destination="MHy-Ij-sbf" kind="push" identifier="Show Place Photos" id="eG7-yJ-IUt"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -161,7 +161,7 @@
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Otm-8u-7mE">
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>
-                            <action selector="fetchPhotos" destination="MHy-Ij-sbf" eventType="valueChanged" id="Pbc-He-y7P"/>
+                            <action selector="fetchPhotos" destination="MHy-Ij-sbf" eventType="valueChanged" id="Sdk-rI-qBH"/>
                         </connections>
                     </refreshControl>
                     <connections>

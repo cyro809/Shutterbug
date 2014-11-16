@@ -17,14 +17,12 @@
 
 @implementation ImagesPlacesViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void)setPhotos:(NSArray *)photos
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    _photos = photos;
+    [self.tableView reloadData];
 }
+
 
 - (void)viewDidLoad
 {
@@ -41,8 +39,13 @@
 
 - (IBAction)fetchPhotos
 {
+    
+    
+    
+    
     [self.refreshControl beginRefreshing]; // start the spinner
-    NSURL *url = [FlickrFetcher URLforPhotosInPlace:[self.place valueForKeyPath:FLICKR_PLACE_ID] maxResults:50];
+    NSLog(@"%@", self.place);
+    NSURL *url = [FlickrFetcher URLforPhotosInPlace:[self.place valueForKeyPath:FLICKR_PLACE_ID] maxResults:10];
     // create a (non-main) queue to do fetch on
     dispatch_queue_t fetchQ = dispatch_queue_create("flickr fetcher", NULL);
     // put a block to do the fetch onto that queue
@@ -54,15 +57,33 @@
                                                                             options:0
                                                                               error:NULL];
         // get the NSArray of photo NSDictionarys out of the results
-        NSArray *photos = [propertyListResults valueForKeyPath:FLICKR_RESULTS_PLACES];
+        NSArray *photos = [propertyListResults valueForKeyPath:FLICKR_RESULTS_PHOTOS];
         // update the Model (and thus our UI), but do so back on the main queue
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.refreshControl endRefreshing]; // stop the spinner
-            self.places = photos;
+            self.photos = photos;
         });
     });
 }
 
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section
+{
+    return [self.photos count];
+}
 
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Flickr Place Photos Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier
+                                                            forIndexPath:indexPath];
+    
+    NSDictionary *photo = self.photos[indexPath.row];
+    cell.textLabel.text = [photo valueForKeyPath:FLICKR_PHOTO_TITLE];
+    cell.detailTextLabel.text = [photo valueForKeyPath:FLICKR_PHOTO_DESCRIPTION];
+    
+    return cell;
+}
 
 @end

@@ -8,8 +8,9 @@
 
 #import "JustPostedFlickrPhotosTVC.h"
 
-@interface ImagesPlacesViewController : JustPostedFlickrPhotosTVC
+@interface ImagesPlacesViewController : UITableViewController
 
 @property (nonatomic, strong) NSDictionary *place;
+@property (nonatomic, strong) NSArray *photos;
 
 @end

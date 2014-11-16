@@ -142,10 +142,18 @@ titleForHeaderInSection:(NSInteger)section
         // find out which row in which section we're seguing from
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         if (indexPath) {
-            
-            if ([segue.identifier isEqualToString:@"Flickr Place Photos Cell"]) {
+            // found it ... are we doing the Display Photo segue?
+            if ([segue.identifier isEqualToString:@"Display Photo"]) {
+                // yes ... is the destination an ImageViewController?
+                if ([segue.destinationViewController isKindOfClass:[ImageViewController class]]) {
+                    // yes ... then we know how to prepare for that segue!
+                    [self prepareImageViewController:segue.destinationViewController
+                                      toDisplayPhoto:self.places[indexPath.row]];
+                }
+            }
+            if ([segue.identifier isEqualToString:@"Show Place Photos"] && indexPath) {
                 [self preparePlacePhotosTableViewController:segue.destinationViewController
-                                                   forPlace:self.placesByCountry[self.countries[indexPath.section]][indexPath.row]];
+                              forPlace:self.placesByCountry[self.countries[indexPath.section]][indexPath.row]];
             }
         }
     }

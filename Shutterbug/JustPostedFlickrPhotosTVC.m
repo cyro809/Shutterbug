@@ -32,7 +32,7 @@
     [self.refreshControl beginRefreshing]; // start the spinner
     NSURL *url = [FlickrFetcher URLforTopPlaces];
     // create a (non-main) queue to do fetch on
-    dispatch_queue_t fetchQ = dispatch_queue_create("flickr fetcher", NULL);
+    dispatch_queue_t fetchQ = dispatch_queue_create("flickr place fetcher", NULL);
     // put a block to do the fetch onto that queue
     dispatch_async(fetchQ, ^{
         // fetch the JSON data from Flickr
