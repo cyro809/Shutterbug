@@ -10,12 +10,20 @@
 #import "FlickrFetcher.h"
 #import "Helpers.h"
 
+#define FOREGROUND_FLICKR_FETCH_INTERVAL (15 * 60)
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
     [self startFlickrFetch];
+    [NSTimer scheduledTimerWithTimeInterval:FOREGROUND_FLICKR_FETCH_INTERVAL
+                                     target:self
+                                   selector:@selector(startFlickrFetch:)
+                                   userInfo:nil
+                                    repeats:YES];
+    
     return YES;
 }
 
@@ -25,6 +33,11 @@
         NSLog(@"%d photos fetched", [photos count]);
         if (whenDone) whenDone();
     }];
+}
+
+- (void)startFlickrFetch:(NSTimer *)timer
+{
+    [self startFlickrFetch];
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
