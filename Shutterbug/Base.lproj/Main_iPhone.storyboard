@@ -150,6 +150,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="L7g-zC-ZCr" kind="push" identifier="Display Photo" id="pH5-Zl-VQc"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -164,9 +167,6 @@
                             <action selector="fetchPhotos" destination="MHy-Ij-sbf" eventType="valueChanged" id="Sdk-rI-qBH"/>
                         </connections>
                     </refreshControl>
-                    <connections>
-                        <segue destination="L7g-zC-ZCr" kind="push" id="pXG-sk-cSd"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gNe-Fn-jhE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
