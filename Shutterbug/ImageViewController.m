@@ -59,6 +59,15 @@
     self.scrollView.contentSize = self.image ? self.image.size : CGSizeZero;
 
     [self.spinner stopAnimating];
+    [self setZoomScaleToFillScreen];
+}
+
+- (void)setZoomScaleToFillScreen
+{
+    double wScale = self.scrollView.bounds.size.width / self.imageView.image.size.width;
+    double hScale = (self.scrollView.bounds.size.height - self.navigationController.navigationBar.frame.size.height - self.tabBarController.tabBar.frame.size.height - [UIApplication sharedApplication].statusBarFrame.size.height) / self.imageView.image.size.height;
+    if (wScale > hScale) self.scrollView.zoomScale = wScale;
+    else self.scrollView.zoomScale = hScale;
 }
 
 - (void)setScrollView:(UIScrollView *)scrollView
