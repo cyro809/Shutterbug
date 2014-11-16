@@ -9,6 +9,7 @@
 #import "ImagesPlacesViewController.h"
 #import "FlickrFetcher.h"
 #import "ImageViewController.h"
+#import "Helpers.h"
 
 @interface ImagesPlacesViewController ()
 
@@ -87,6 +88,7 @@
 {
     ivc.imageURL = [FlickrFetcher URLforPhoto:photo format:FlickrPhotoFormatLarge];
     ivc.title = [photo valueForKeyPath:FLICKR_PHOTO_TITLE];
+    [Helpers addPhoto:photo];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
