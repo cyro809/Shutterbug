@@ -162,14 +162,7 @@
           withBarButtonItem:(UIBarButtonItem *)barButtonItem
        forPopoverController:(UIPopoverController *)pc
 {
-    UIViewController *master = aViewController;
-    if ([master isKindOfClass:[UITabBarController class]]) {
-        master = ((UITabBarController *)master).selectedViewController;
-    }
-    if ([master isKindOfClass:[UINavigationController class]]) {
-        master = ((UINavigationController *)master).topViewController;
-    }
-    barButtonItem.title = master.title;
+    barButtonItem.title = @"Shutterbug";
     self.navigationItem.leftBarButtonItem = barButtonItem;
 }
 
