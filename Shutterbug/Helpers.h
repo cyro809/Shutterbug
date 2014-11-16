@@ -18,4 +18,9 @@
 + (void)addPhoto:(NSDictionary *)photo;
 + (NSArray *)allPhotos;
 
++ (void)startBackgroundDownloadRecentPhotosOnCompletion:(void (^)(NSArray *photos, void(^whenDone)()))completionHandler;
++ (void)handleEventsForBackgroundURLSession:(NSString *)identifier
+                          completionHandler:(void (^)())completionHandler;
+
+
 @end

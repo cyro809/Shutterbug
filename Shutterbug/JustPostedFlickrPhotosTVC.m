@@ -20,7 +20,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self fetchPhotos];
+    //[self fetchPhotos];
 }
 
 // this method is called in viewDidLoad,

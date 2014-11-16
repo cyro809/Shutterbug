@@ -242,6 +242,13 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Stanford University";
 				TargetAttributes = {
+					ECB1A3341821D6760007EFB8 = {
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
 					ECB1A3581821D6760007EFB8 = {
 						TestTargetID = ECB1A3341821D6760007EFB8;
 					};

@@ -7,13 +7,24 @@
 //
 
 #import "AppDelegate.h"
+#import "FlickrFetcher.h"
+#import "Helpers.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [self startFlickrFetch];
     return YES;
+}
+
+- (void)startFlickrFetch
+{
+    [Helpers startBackgroundDownloadRecentPhotosOnCompletion:^(NSArray *photos, void (^whenDone)()) {
+        NSLog(@"%d photos fetched", [photos count]);
+        if (whenDone) whenDone();
+    }];
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -42,5 +53,14 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+- (void)application:(UIApplication *)application
+handleEventsForBackgroundURLSession:(NSString *)identifier
+  completionHandler:(void (^)())completionHandler
+{
+    [Helpers handleEventsForBackgroundURLSession:identifier
+                                    completionHandler:completionHandler];
+}
+
 
 @end
