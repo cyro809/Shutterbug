@@ -13,5 +13,6 @@
 + (NSArray *)sortPlaces:(NSArray *)places;
 + (NSDictionary *)placesByCountries:(NSArray *)places;
 + (NSArray *)countriesFromPlacesByCountry:(NSDictionary *)placesByCountry;
++ (NSString *)titleOfPlace:(NSDictionary *)place;
 
 @end

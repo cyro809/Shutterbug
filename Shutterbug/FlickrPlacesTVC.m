@@ -83,7 +83,6 @@ titleForHeaderInSection:(NSInteger)section
     
     NSArray *placesInfo = [[place valueForKeyPath:FLICKR_PLACE_NAME] componentsSeparatedByString:@", "];
     NSString *title = [placesInfo objectAtIndex:0];
-    NSLog(@"%@", title);
     NSString *subtitle = [NSString stringWithFormat:@"%@, %@", [placesInfo objectAtIndex:1], [placesInfo objectAtIndex:2]];
     
     cell.textLabel.text = title;
@@ -129,6 +128,7 @@ titleForHeaderInSection:(NSInteger)section
 - (void)preparePlacePhotosTableViewController:(ImagesPlacesViewController *)tvc forPlace:(NSDictionary *)place
 {
     tvc.place = place;
+    tvc.title = [Helpers titleOfPlace:place];
 }
 
 // In a story board-based application, you will often want to do a little preparation before navigation

@@ -42,7 +42,6 @@
 {
     [self.refreshControl beginRefreshing]; // start the spinner
     [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
-    NSLog(@"%@", self.place);
     NSURL *url = [FlickrFetcher URLforPhotosInPlace:[self.place valueForKeyPath:FLICKR_PLACE_ID] maxResults:50];
     // create a (non-main) queue to do fetch on
     dispatch_queue_t fetchQ = dispatch_queue_create("flickr fetcher", NULL);
