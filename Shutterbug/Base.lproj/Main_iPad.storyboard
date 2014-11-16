@@ -7,7 +7,6 @@
         <!--Split View Controller-->
         <scene sceneID="kSb-m2-0yN">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nox-pd-8Jw" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <splitViewController id="W7d-tM-kne" sceneMemberID="viewController">
                     <toolbarItems/>
                     <connections>
@@ -15,13 +14,13 @@
                         <segue destination="hMz-kK-iaE" kind="relationship" relationship="masterViewController" id="yU3-sz-nC6"/>
                     </connections>
                 </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nox-pd-8Jw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="824" y="573"/>
         </scene>
         <!--Image View Controller-->
         <scene sceneID="rdP-w2-JsK">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HRf-FM-fxh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="wag-jZ-vS5" customClass="ImageViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CX4-Ck-nzK"/>
@@ -57,13 +56,13 @@
                         <outlet property="spinner" destination="0Li-xG-E10" id="QZb-z3-VGc"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HRf-FM-fxh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2818" y="1567"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Q7l-Au-0vg">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="udO-rd-Rgt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="c7a-nf-QOv" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gyc-Jm-gYT">
@@ -75,6 +74,7 @@
                         <segue destination="wag-jZ-vS5" kind="relationship" relationship="rootViewController" id="MQc-dI-twQ"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="udO-rd-Rgt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1860" y="1567"/>
         </scene>
@@ -136,7 +136,7 @@
         <scene sceneID="MBB-3f-0EI">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="hMz-kK-iaE" sceneMemberID="viewController">
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Ne2-7H-0pf">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -174,10 +174,10 @@
             </objects>
             <point key="canvasLocation" x="2378" y="-517"/>
         </scene>
-        <!--Images Places View Controller - Shutterbug-->
+        <!--Images Regions View Controller - Shutterbug-->
         <scene sceneID="nbJ-FS-Uek">
             <objects>
-                <tableViewController id="W3D-Xp-CQS" customClass="ImagesPlacesViewController" sceneMemberID="viewController">
+                <tableViewController id="W3D-Xp-CQS" customClass="ImagesRegionsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ERj-UC-t98">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

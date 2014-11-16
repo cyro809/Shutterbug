@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Stanford University. All rights reserved.
 //
 
-#import "ImagesPlacesViewController.h"
+#import "ImagesRegionsViewController.h"
 
-@interface RecentPhotosTVC : ImagesPlacesViewController
+@interface RecentPhotosTVC : ImagesRegionsViewController
 
 @end

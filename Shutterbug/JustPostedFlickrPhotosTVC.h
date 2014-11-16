@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FlickrPlacesTVC.h"
+#import "FlickrRegionsTVC.h"
 
-@interface JustPostedFlickrPhotosTVC : FlickrPlacesTVC
+@interface JustPostedFlickrPhotosTVC : FlickrRegionsTVC
 
 @end
