@@ -48,10 +48,10 @@
 
 - (void)setImage:(UIImage *)image
 {
+    self.scrollView.zoomScale = 1.0;
     self.imageView.image = image; // does not change the frame of the UIImageView
 
     // had to add these two lines in Shutterbug to fix a bug in "reusing" ImageViewController's MVC
-    self.scrollView.zoomScale = 1.0;
     [self.imageView sizeToFit];
     self.imageView.frame = CGRectMake(0, 0, image.size.width, image.size.height);
     
@@ -65,7 +65,12 @@
 - (void)setZoomScaleToFillScreen
 {
     double wScale = self.scrollView.bounds.size.width / self.imageView.image.size.width;
-    double hScale = (self.scrollView.bounds.size.height - self.navigationController.navigationBar.frame.size.height - self.tabBarController.tabBar.frame.size.height - [UIApplication sharedApplication].statusBarFrame.size.height) / self.imageView.image.size.height;
+    double hScale = (self.scrollView.bounds.size.height
+                     - self.navigationController.navigationBar.frame.size.height
+                     - self.tabBarController.tabBar.frame.size.height
+                     - MIN([UIApplication sharedApplication].statusBarFrame.size.height,
+                           [UIApplication sharedApplication].statusBarFrame.size.width)
+                     ) / self.imageView.image.size.height;
     if (wScale > hScale) self.scrollView.zoomScale = wScale;
     else self.scrollView.zoomScale = hScale;
 }

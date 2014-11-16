@@ -121,11 +121,12 @@
     if ([detail isKindOfClass:[UINavigationController class]]) {
         detail = [((UINavigationController *)detail).viewControllers firstObject];
     }
+    [self prepareImageViewController:detail toDisplayPhoto:self.photos[indexPath.row]];
     // is the Detail is an ImageViewController?
-    if ([detail isKindOfClass:[ImageViewController class]]) {
+    /*if ([detail isKindOfClass:[ImageViewController class]]) {
         // yes ... we know how to update that!
         [self prepareImageViewController:detail toDisplayPhoto:self.photos[indexPath.row]];
-    }
+    }*/
 }
 
 @end
