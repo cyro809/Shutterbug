@@ -21,6 +21,6 @@
 + (void)startBackgroundDownloadRecentPhotosOnCompletion:(void (^)(NSArray *photos, void(^whenDone)()))completionHandler;
 + (void)handleEventsForBackgroundURLSession:(NSString *)identifier
                           completionHandler:(void (^)())completionHandler;
-
++ (void)loadRecentPhotosOnCompletion:(void (^)(NSArray *places, NSError *error))completionHandler;
 
 @end

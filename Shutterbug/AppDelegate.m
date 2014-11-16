@@ -18,6 +18,7 @@
 {
     // Override point for customization after application launch.
     [self startFlickrFetch];
+    [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
     [NSTimer scheduledTimerWithTimeInterval:FOREGROUND_FLICKR_FETCH_INTERVAL
                                      target:self
                                    selector:@selector(startFlickrFetch:)
@@ -75,5 +76,18 @@ handleEventsForBackgroundURLSession:(NSString *)identifier
                                     completionHandler:completionHandler];
 }
 
+- (void)application:(UIApplication *)application
+performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    [Helpers loadRecentPhotosOnCompletion:^(NSArray *photos, NSError *error) {
+        if (error) {
+            NSLog(@"Flickr background fetch failed: %@", error.localizedDescription);
+            completionHandler(UIBackgroundFetchResultFailed);
+        } else {
+            NSLog(@"%d photos fetched", [photos count]);
+            completionHandler(UIBackgroundFetchResultNewData);
+        }
+    }];
+}
 
 @end
