@@ -63,47 +63,7 @@
     }
     return photo;
 }
-/* It's classic, not efficient variant - doesn't use here now , but put for example
- 
-+(void)loadPhotosFromFlickrArray:(NSArray *)photos // of Flickr NSDictionary
-        intoManagedObjectContext:(NSManagedObjectContext *)context
-{
-    //----
-    dispatch_queue_t placeQ =dispatch_queue_create("place fetcher", NULL);
-    dispatch_async(placeQ, ^{
-        NSMutableSet *photoIds =[[NSMutableSet alloc] init];
-        NSMutableArray *photosWithRegion =[[NSMutableArray alloc] init];
-        for (NSDictionary *photo in photos) {
-            NSMutableDictionary *photoWithRegion =[photo mutableCopy];
-            NSURL *urlPlace =[FlickrFetcher URLforInformationAboutPlace:[photo valueForKeyPath: FLICKR_PHOTO_PLACE_ID]];
-            
-            [NetworkIndicatorHelper setNetworkActivityIndicatorVisible:YES];
-            NSData *jsonResults = [NSData dataWithContentsOfURL:urlPlace];
-            [NetworkIndicatorHelper setNetworkActivityIndicatorVisible:NO];
-            NSDictionary *placeInformation =[NSJSONSerialization JSONObjectWithData:jsonResults
-                                                                            options:0
-                                                                              error:NULL];
-            NSString *region = [FlickrFetcher extractRegionNameFromPlaceInformation:placeInformation];
-            NSLog(@"region = %@",region);
-            
-            if (region) {
-                [photoWithRegion setObject:region forKey:@"region"];
-            }else{
-                [photoWithRegion setObject:@"Unknown" forKey:@"region"];
-                
-            }
-            [photoIds addObject:photo[FLICKR_PHOTO_ID]];
-            [photosWithRegion addObject:photoWithRegion];
-            //----
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self photoWithFlickrInfo:photoWithRegion inManagedObjectContext:context];
-            });
-        }
 
-    });
-    
-}
-*/
 
 +(void)load1PhotosFromFlickrArray:(NSArray *)photos // of Flickr NSDictionary
          intoManagedObjectContext:(NSManagedObjectContext *)context
@@ -114,7 +74,6 @@
         [photoIds addObject:photo[FLICKR_PHOTO_ID]];
     }
     [self photosWithFlickrInfo:photos andPhotoIds:[photoIds copy] inManagedObjectContext:context];
-//    [self deleteOldPhotosInManagedObjectContext:context];
 }
 
 + (void)photosWithFlickrInfo:(NSArray *)photoDictionaries andPhotoIds:(NSSet *)photoIds inManagedObjectContext:(NSManagedObjectContext *)context
@@ -186,7 +145,7 @@
                                                              andRegionName:region
                                                     inManagedObjectContext:context];
                         photo.region = [Region regionForPhotosWithName:region inManagedObjectContext:context];
-                        //                        [document saveToURL:document.fileURL forSaveOperation:UIDocumentSaveForOverwriting completionHandler:NULL];
+                        
                     }];
                     
                 });
@@ -219,7 +178,7 @@
     NSError *error;
     NSArray *matches = [context executeFetchRequest:request error:&error];
     if (!matches || ([matches count] > 1 || error)) {
-//        NSLog(@"Error in exisitingPhotoForID: %@ %@", matches, error);
+        NSLog(@"deu ruim exisitingPhotoForID: %@ %@", matches, error);
     } else if ([matches count] == 0) {
         photo = nil;
     } else {

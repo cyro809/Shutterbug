@@ -25,7 +25,6 @@
                                              selector:@selector(handleUpdatedData:)
                                                  name:@"DataUpdated"
                                                object:nil];
-//   [self fetchTopPlaces];
 }
 
 -(void)handleUpdatedData:(NSNotification *)notification {
