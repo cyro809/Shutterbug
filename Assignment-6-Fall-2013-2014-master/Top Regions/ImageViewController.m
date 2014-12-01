@@ -1,10 +1,10 @@
 //
 //  ImageViewController.m
-//  ImaginariumMy
+//  Imaginarium
 //
-//  Created by Tatiana Kornilova on 12/14/13.
-//  Copyright (c) 2013 Tatiana Kornilova. All rights reserved.
-//  More accurate calculation zoomScaleToFit take from Martin Mandl https://github.com/m2mtech/topplaces-2013-14/tree/assignment5task10
+//  Created by CS193p Instructor.
+//  Copyright (c) 2013 Stanford University. All rights reserved.
+//
 
 #import "ImageViewController.h"
 #import "CacheForNSData.h"
@@ -21,112 +21,6 @@
 @end
 
 @implementation ImageViewController
-
--(void)setScrollView:(UIScrollView *)scrollView
-{
-    _scrollView = scrollView;
-    _scrollView.minimumZoomScale = 0.2;
-    _scrollView.maximumZoomScale = 2.0;
-    _scrollView.delegate =self;
-    self.scrollView.contentSize = self.image ? self.image.size : CGSizeZero;
-}
-
--(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
-{
-    return self.imageView;
-}
-
-// Disable autoZoom after the user performs a zoom (by pinching)
-- (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view
-{
-    self.autoZoomed = NO;
-}
-
--(void)setImageURL:(NSURL *)imageURL
-{
-    _imageURL =imageURL;
-    [self startDownLoadImage];
-}
-
-- (void)startDownLoadImage1
-{
-    self.image = nil;
-    
-    if (self.imageURL)
-    {
-        [self.spinner startAnimating];
-        
-        NSURLRequest *request = [NSURLRequest requestWithURL:self.imageURL];
-        
-        // another configuration option is backgroundSessionConfiguration (multitasking API required though)
-        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
-        
-        // create the session without specifying a queue to run completion handler on (thus, not main queue)
-        // we also don't specify a delegate (since completion handler is all we need)
-        NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
-        
-        NSURLSessionDownloadTask *task = [session downloadTaskWithRequest:request
-                                                        completionHandler:^(NSURL *localfile, NSURLResponse *response, NSError *error) {
-                                                            // this handler is not executing on the main queue, so we can't do UI directly here
-                                                            if (!error) {
-                                                                if ([request.URL isEqual:self.imageURL]) {
-                                                                    // UIImage is an exception to the "can't do UI here"
-                                                                    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:localfile]];
-                                                                    // but calling "self.image =" is definitely not an exception to that!
-                                                                    // so we must dispatch this back to the main queue
-                                                                    dispatch_async(dispatch_get_main_queue(), ^{ self.image = image; });
-                                                                }
-                                                            }
-                                                        }];
-        [task resume]; // don't forget that all NSURLSession tasks start out suspended!
-    }
-}
-
--(void)startDownLoadImage
-{
-    
-    self.image =nil;
-    
-    if (self.imageURL) {
-        
-        [self.spinner startAnimating];
-        //------------------From Cache------------
-        NSURL *imageURL =self.imageURL;
-        NSString *fileURLlast = [[self.imageURL pathComponents] lastObject];
-        NSData *imageData = [[CacheForNSData sharedInstance] dataInCacheForIdentifier:fileURLlast];
-        
-        if (imageData){
-            //------------------- On Screen Cache-------------------
-            if ([imageURL isEqual:self.imageURL]) {
-                UIImage *image = [UIImage imageWithData:imageData];
-                self.image =image;
-            }
-        }else{
-            //-------------------------- From Network ---------------------
-            NSURLRequest *request = [NSURLRequest requestWithURL:self.imageURL];
-            NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
-            NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
-            NSURLSessionDownloadTask *task = [session downloadTaskWithRequest:request completionHandler:^(NSURL *localfile, NSURLResponse *response, NSError *error) {
-                if (!error) {
-                    //------------ In Cache-----------------
-                    NSString *fileURLlast = [[request.URL pathComponents] lastObject];
-                    NSData *imageData = [[NSData alloc] initWithContentsOfURL:localfile];
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-                        [[CacheForNSData sharedInstance] cacheData:imageData withIdentifier:fileURLlast];
-                    });
-                    //------------------- On Screen -------------------
-                    if ([request.URL isEqual:self.imageURL]) {
-                        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:localfile]];
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            self.image =image;
-                        });
-                    }
-                }
-            }];
-            [task resume];
-        }
-    }
-}
 
 -(UIImageView *)imageView
 {
@@ -148,7 +42,7 @@
     self.scrollView.contentSize = self.image ? self.image.size : CGSizeZero;
     self.autoZoomed = YES;
     [self zoomScaleToFit];
-
+    
 }
 
 // Calculate zoom scale to fit the image in the screen without blank spaces
@@ -179,6 +73,77 @@
     [super viewDidLoad];
     [self.scrollView addSubview:self.imageView];
 }
+
+
+-(void)setScrollView:(UIScrollView *)scrollView
+{
+    _scrollView = scrollView;
+    _scrollView.minimumZoomScale = 0.2;
+    _scrollView.maximumZoomScale = 2.0;
+    _scrollView.delegate =self;
+    self.scrollView.contentSize = self.image ? self.image.size : CGSizeZero;
+}
+
+-(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return self.imageView;
+}
+
+// Disable autoZoom after the user performs a zoom (by pinching)
+- (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view
+{
+    self.autoZoomed = NO;
+}
+
+-(void)setImageURL:(NSURL *)imageURL
+{
+    _imageURL =imageURL;
+    [self startDownLoadImage];
+}
+
+
+-(void)startDownLoadImage
+{
+    
+    self.image =nil;
+    
+    if (self.imageURL) {
+        
+        [self.spinner startAnimating];
+
+        NSURL *imageURL =self.imageURL;
+        NSString *fileURLlast = [[self.imageURL pathComponents] lastObject];
+        NSData *imageData = [[CacheForNSData sharedInstance] dataInCacheForIdentifier:fileURLlast];
+        
+        if (imageData){
+            if ([imageURL isEqual:self.imageURL]) {
+                UIImage *image = [UIImage imageWithData:imageData];
+                self.image =image;
+            }
+        }else{
+            NSURLRequest *request = [NSURLRequest requestWithURL:self.imageURL];
+            NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
+            NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
+            NSURLSessionDownloadTask *task = [session downloadTaskWithRequest:request completionHandler:^(NSURL *localfile, NSURLResponse *response, NSError *error) {
+                if (!error) {
+                    NSString *fileURLlast = [[request.URL pathComponents] lastObject];
+                    NSData *imageData = [[NSData alloc] initWithContentsOfURL:localfile];
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                        [[CacheForNSData sharedInstance] cacheData:imageData withIdentifier:fileURLlast];
+                    });
+                    if ([request.URL isEqual:self.imageURL]) {
+                        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:localfile]];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            self.image =image;
+                        });
+                    }
+                }
+            }];
+            [task resume];
+        }
+    }
+}
+
 
 #pragma UISplitViewControllerDelegate
 

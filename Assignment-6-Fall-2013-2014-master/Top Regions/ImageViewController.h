@@ -1,9 +1,9 @@
 //
 //  ImageViewController.h
-//  ImaginariumMy
+//  Photomania
 //
-//  Created by Tatiana Kornilova on 12/14/13.
-//  Copyright (c) 2013 Tatiana Kornilova. All rights reserved.
+//  Created by CS193p Instructor.
+//  Copyright (c) 2013 Stanford University. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
