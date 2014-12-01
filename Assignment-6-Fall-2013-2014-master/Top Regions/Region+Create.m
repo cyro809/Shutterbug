@@ -22,7 +22,6 @@
         NSError *error;
         NSArray *matches =[context executeFetchRequest:request error:&error];
         if (!matches || ([matches count] > 1)) {
-            // handle error
         } else if (![matches count]) {
             region = [NSEntityDescription insertNewObjectForEntityForName:@"Region"
                                                    inManagedObjectContext:context];
@@ -49,7 +48,6 @@
         NSError *error;
         NSArray *matches =[context executeFetchRequest:request error:&error];
         if (!matches || ([matches count] > 1)) {
-            // handle error
         } else if (![matches count]) {
             region = [NSEntityDescription insertNewObjectForEntityForName:@"Region"
                                                    inManagedObjectContext:context];

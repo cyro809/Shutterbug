@@ -1,10 +1,10 @@
 //
 //  ImageCache.h
-//  CS193P.HW5.FastSPoT
+//  Top Regions
 //
-//  Created by Felix Vigl on 27.02.13.
-//  Copyright (c) 2013 Felix Vigl. All rights reserved.
-//  https://github.com/bzzbzzz/CS193P.HW5.FastSPoT
+//  Created by Cyro Guimaraes on 11/29/14.
+//  Copyright (c) 2014 Stanford University. All rights reserved.
+//
 
 #import <Foundation/Foundation.h>
 
