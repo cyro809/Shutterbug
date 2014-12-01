@@ -38,7 +38,7 @@
 		E4B4EE451865F03700EE511F /* Region.m in Sources */ = {isa = PBXBuildFile; fileRef = E4B4EE441865F03700EE511F /* Region.m */; };
 		E4B4EE4B1866033600EE511F /* RecentsPhotosTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E4B4EE4A1866033600EE511F /* RecentsPhotosTVC.m */; };
 		E4B4EE4E186607B800EE511F /* NetworkActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E4B4EE4D186607B800EE511F /* NetworkActivity.m */; };
-		E4B4EE511866119800EE511F /* CacheForNSData.m in Sources */ = {isa = PBXBuildFile; fileRef = E4B4EE501866119800EE511F /* CacheForNSData.m */; };
+		E4B4EE511866119800EE511F /* DataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E4B4EE501866119800EE511F /* DataCache.m */; };
 		E4B4EE541866E25500EE511F /* TopRegionsCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E4B4EE531866E25500EE511F /* TopRegionsCDTVC.m */; };
 /* End PBXBuildFile section */
 
@@ -106,8 +106,8 @@
 		E4B4EE4A1866033600EE511F /* RecentsPhotosTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentsPhotosTVC.m; sourceTree = "<group>"; };
 		E4B4EE4C186607B800EE511F /* NetworkActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkActivity.h; sourceTree = "<group>"; };
 		E4B4EE4D186607B800EE511F /* NetworkActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkActivity.m; sourceTree = "<group>"; };
-		E4B4EE4F1866119800EE511F /* CacheForNSData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheForNSData.h; sourceTree = "<group>"; };
-		E4B4EE501866119800EE511F /* CacheForNSData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheForNSData.m; sourceTree = "<group>"; };
+		E4B4EE4F1866119800EE511F /* DataCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataCache.h; sourceTree = "<group>"; };
+		E4B4EE501866119800EE511F /* DataCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataCache.m; sourceTree = "<group>"; };
 		E4B4EE521866E25500EE511F /* TopRegionsCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TopRegionsCDTVC.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		E4B4EE531866E25500EE511F /* TopRegionsCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TopRegionsCDTVC.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 /* End PBXFileReference section */
@@ -249,8 +249,8 @@
 			children = (
 				E4B4EE1218649A4E00EE511F /* MyUIManagedDocument.h */,
 				E4B4EE1318649A4E00EE511F /* MyUIManagedDocument.m */,
-				E4B4EE4F1866119800EE511F /* CacheForNSData.h */,
-				E4B4EE501866119800EE511F /* CacheForNSData.m */,
+				E4B4EE4F1866119800EE511F /* DataCache.h */,
+				E4B4EE501866119800EE511F /* DataCache.m */,
 				E4B4EE4C186607B800EE511F /* NetworkActivity.h */,
 				E4B4EE4D186607B800EE511F /* NetworkActivity.m */,
 				E4B4EE111864923D00EE511F /* DBHelper.h */,
@@ -387,7 +387,7 @@
 			files = (
 				E49800C7186B1A6C00875AA0 /* Photo.m in Sources */,
 				E4B4EE451865F03700EE511F /* Region.m in Sources */,
-				E4B4EE511866119800EE511F /* CacheForNSData.m in Sources */,
+				E4B4EE511866119800EE511F /* DataCache.m in Sources */,
 				E4B4EE1418649A4E00EE511F /* MyUIManagedDocument.m in Sources */,
 				E4B4EE1E1864F6B900EE511F /* PhotosCDTVC.m in Sources */,
 				E4B4EDD61864548B00EE511F /* Photo+Flickr.m in Sources */,

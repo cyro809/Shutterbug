@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Felix Vigl. All rights reserved.
 //   https://github.com/bzzbzzz/CS193P.HW5.FastSPoT
 
-#import "CacheForNSData.h"
+#import "DataCache.h"
 
-@interface CacheForNSData()
+@interface DataCache()
 
   @property (nonatomic, readwrite) NSUInteger cacheSize;
 
@@ -18,17 +18,14 @@
 @end
 
 
-@implementation CacheForNSData
+@implementation DataCache
 
 
 #define MAX_CACHE_SIZE			3	*1048576	// [ MB ]
 #define MAX_CACHE_IPAD_FACTOR	4
 
 
-//----------------------------------------------------------------
 # pragma mark   -   cache methods
-//----------------------------------------------------------------
-
 
 - (BOOL)cacheData:(NSData *)data withIdentifier:(NSString *)identifier
 {
@@ -90,11 +87,9 @@
 - (NSString *)cacheDirectory
 {
 	if (!_cacheDirectory) {
-        // contruct local path to images subdir in cache dir
        
         NSURL *cachesDir = [self.fileManager URLForDirectory:NSCachesDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
         NSURL *imagesDir = [cachesDir URLByAppendingPathComponent:@"Images"];
-        // if the images directory does not exist we create it (lazy instantiation!?)
         if (![self.fileManager fileExistsAtPath:[imagesDir path]]) {
             [self.fileManager createDirectoryAtURL:imagesDir withIntermediateDirectories:YES attributes:nil error:nil];
         }
@@ -114,7 +109,6 @@
 	
 	if (self.cacheDirectory != nil) {
 		fileSize = 0;
-		//NSArray *filesArray = [self.fileManager subpathsOfDirectoryAtPath:self.cacheDirectory error:nil];  ?!
 		NSArray *filesArray = [self.fileManager contentsOfDirectoryAtPath:self.cacheDirectory error:nil];
 		NSString *fileName;
 		

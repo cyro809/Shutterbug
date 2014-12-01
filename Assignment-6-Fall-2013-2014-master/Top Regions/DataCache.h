@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CacheForNSData : NSObject
+@interface DataCache : NSObject
 
   @property (nonatomic) NSUInteger maxCacheSize;
   @property (nonatomic) NSString *cacheDirectory;
   @property (nonatomic, readonly) NSUInteger cacheSize;
 
-+ (CacheForNSData *)sharedInstance;
++ (DataCache *)sharedInstance;
 
 - (BOOL)cacheData:(NSData *)data withIdentifier:(NSString *)identifier;
 

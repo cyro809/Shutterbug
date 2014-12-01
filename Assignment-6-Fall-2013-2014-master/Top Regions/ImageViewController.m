@@ -7,7 +7,7 @@
 //
 
 #import "ImageViewController.h"
-#import "CacheForNSData.h"
+#import "DataCache.h"
 
 @interface ImageViewController () <UIScrollViewDelegate, UISplitViewControllerDelegate>
 @property (nonatomic,strong) UIImageView *imageView;
@@ -113,7 +113,7 @@
 
         NSURL *imageURL =self.imageURL;
         NSString *fileURLlast = [[self.imageURL pathComponents] lastObject];
-        NSData *imageData = [[CacheForNSData sharedInstance] dataInCacheForIdentifier:fileURLlast];
+        NSData *imageData = [[DataCache sharedInstance] dataInCacheForIdentifier:fileURLlast];
         
         if (imageData){
             if ([imageURL isEqual:self.imageURL]) {
@@ -129,7 +129,7 @@
                     NSString *fileURLlast = [[request.URL pathComponents] lastObject];
                     NSData *imageData = [[NSData alloc] initWithContentsOfURL:localfile];
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-                        [[CacheForNSData sharedInstance] cacheData:imageData withIdentifier:fileURLlast];
+                        [[DataCache sharedInstance] cacheData:imageData withIdentifier:fileURLlast];
                     });
                     if ([request.URL isEqual:self.imageURL]) {
                         UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:localfile]];
