@@ -22,7 +22,6 @@
     Photo *photo = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = photo.title;
     cell.detailTextLabel.text = photo.subtitle;
-    //----Thumnail------------------
     NSURL *thumbnailURL =  [NSURL URLWithString:photo.thumbnailURL];
     NSData *imageData = photo.thumbnail;
     if (!imageData){
@@ -43,7 +42,6 @@
         cell.imageView.image = thumbnail;
         [cell setNeedsLayout];
     }
-    //------------------------------
     
     return cell;
 }

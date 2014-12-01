@@ -10,7 +10,6 @@
 #import "FlickrFetcher.h"
 #import "DBHelper.h"
 #import "Photo+Flickr.h"
-#import "NetworkIndicatorHelper.h"
 
 @interface TopRegionsCDTVC ()
 

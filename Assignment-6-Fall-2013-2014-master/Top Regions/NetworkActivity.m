@@ -6,17 +6,17 @@
 //  Copyright (c) 2014 Stanford University. All rights reserved.
 //
 
-#import "NetworkIndicatorHelper.h"
-@interface NetworkIndicatorHelper()
+#import "NetworkActivity.h"
+@interface NetworkActivity()
 @property (readwrite, atomic) NSUInteger count; // use atomic to make sure thread safe since photo fethcing could be in another queue.
 @end
-@implementation NetworkIndicatorHelper
+@implementation NetworkActivity
 
-static NetworkIndicatorHelper *networkIndicatorHelper;
+static NetworkActivity *networkIndicatorHelper;
 
 + (void) setNetworkActivityIndicatorVisible:(BOOL) visible{
     if(!networkIndicatorHelper){
-        networkIndicatorHelper = [[NetworkIndicatorHelper alloc]init];
+        networkIndicatorHelper = [[NetworkActivity alloc]init];
     }
     if(visible){
         networkIndicatorHelper.count++;

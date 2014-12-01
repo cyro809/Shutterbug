@@ -6,16 +6,16 @@
 //  Copyright (c) 2014 Stanford University. All rights reserved.
 //
 
-#import "ResentsTVC.h"
+#import "RecentsPhotosTVC.h"
 #import "Photo.h"
 #import "DBHelper.h"
 #import "ImageViewController.h"
 
-@interface ResentsTVC ()
+@interface RecentsPhotosTVC ()
 
 @end
 
-@implementation ResentsTVC
+@implementation RecentsPhotosTVC
 
 - (void)setupFetchedResultsControllerWithDocument:(UIManagedDocument *)document
     

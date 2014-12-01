@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NetworkIndicatorHelper : NSObject
+@interface NetworkActivity : NSObject
 
 + (void) setNetworkActivityIndicatorVisible:(BOOL) visible;
 + (BOOL) networkActivityIndicatorVisible;

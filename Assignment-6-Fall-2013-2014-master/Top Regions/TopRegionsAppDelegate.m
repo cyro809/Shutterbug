@@ -11,7 +11,7 @@
 #import "Photo+Flickr.h"
 #import "PhotoDatabaseAvailability.h"
 #import "DBHelper.h"
-#import "NetworkIndicatorHelper.h"
+#import "NetworkActivity.h"
 
 @interface TopRegionsAppDelegate() <NSURLSessionDownloadDelegate>
 @property (copy, nonatomic) void (^flickrDownloadBackgroundURLSessionCompletionHandler)();
@@ -144,7 +144,7 @@
             NSURLSessionDownloadTask *task = [self.flickrDownloadSession downloadTaskWithURL:[FlickrFetcher URLforRecentGeoreferencedPhotos]];
             task.taskDescription = FLICKR_FETCH;
             
-            [NetworkIndicatorHelper setNetworkActivityIndicatorVisible:YES];
+            [NetworkActivity setNetworkActivityIndicatorVisible:YES];
             [task resume];
         } else {
             // ... we are working on a fetch (let's make sure it (they) is (are) running while we're here)
@@ -221,7 +221,7 @@ didFinishDownloadingToURL:(NSURL *)localFile
     // we shouldn't assume we're the only downloading going on ...
     if ([downloadTask.taskDescription isEqualToString:FLICKR_FETCH]) {
         // ... but if this is the Flickr fetching, then process the returned data
-        [NetworkIndicatorHelper setNetworkActivityIndicatorVisible:NO];
+        [NetworkActivity setNetworkActivityIndicatorVisible:NO];
         [self loadFlickrPhotosFromLocalURL:localFile
                        andThenExecuteBlock:^{
                            [self flickrDownloadTasksMightBeComplete];

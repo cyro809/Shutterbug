@@ -10,7 +10,7 @@
 #import "FlickrFetcher.h"
 #import "Photographer+Create.h"
 #import "Region+Create.h"
-#import "NetworkIndicatorHelper.h"
+#import "NetworkActivity.h"
 #import "DBHelper.h"
 
 @implementation Photo (Flickr)
@@ -109,9 +109,9 @@
             
             for (NSDictionary *photoDictionary in photoNonInDBDictionaries){
                 NSURL *urlPlace =[FlickrFetcher URLforInformationAboutPlace:[photoDictionary valueForKeyPath: FLICKR_PHOTO_PLACE_ID]];
-                [NetworkIndicatorHelper setNetworkActivityIndicatorVisible:YES];
+                [NetworkActivity setNetworkActivityIndicatorVisible:YES];
                 NSData *jsonResults = [NSData dataWithContentsOfURL:urlPlace];
-                [NetworkIndicatorHelper setNetworkActivityIndicatorVisible:NO];
+                [NetworkActivity setNetworkActivityIndicatorVisible:NO];
                 NSDictionary *placeInformation =[NSJSONSerialization JSONObjectWithData:jsonResults
                                                                                 options:0
                                                                                   error:NULL];

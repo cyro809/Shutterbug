@@ -8,6 +8,6 @@
 
 #import "PhotosCDTVC.h"
 
-@interface ResentsTVC : PhotosCDTVC
+@interface RecentsPhotosTVC : PhotosCDTVC
 
 @end
