@@ -2,8 +2,8 @@
 //  PhotoDatabaseAvailability.h
 //  Photomania
 //
-//  Created by Tatiana Kornilova on 12/17/13.
-//  Copyright (c) 2013 Tatiana Kornilova. All rights reserved.
+//  Created by CS193p Instructor.
+//  Copyright (c) 2013 Stanford University. All rights reserved.
 //
 
 #ifndef Photomania_PhotoDatabaseAvailability_h

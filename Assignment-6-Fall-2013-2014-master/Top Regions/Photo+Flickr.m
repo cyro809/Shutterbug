@@ -119,7 +119,6 @@
                 if (!region) {
                     region =@"Unknown";
                 }
-                NSLog(@"region = %@",region);
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [[DBHelper sharedManagedDocument] performWithDocument:^(UIManagedDocument *document) {
                         Photo *photo = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:document.managedObjectContext];
@@ -211,11 +210,9 @@
     NSError *error = nil;
     NSArray *oldPhotos = [context executeFetchRequest:request error:&error];
     NSInteger i=0;
-    NSInteger numberOfOldPhotos =[oldPhotos count];
-    NSLog(@"Number of old photos = %ld",(long)numberOfOldPhotos);
+    
     for (Photo *photo in oldPhotos) {
         [Photo removePhotoWithID:photo.unique inManagedObjectContext:photo.managedObjectContext];
-        NSLog(@"Delete %ld/%ld old photo",(long)i,(long)numberOfOldPhotos);
         i++;
     }
     

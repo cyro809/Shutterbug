@@ -171,7 +171,7 @@
 			children = (
 				E4B4EDAD1864537500EE511F /* Flickr Fetcher */,
 				E4B4EE0C1864907900EE511F /* Helper */,
-				E4B4EE181864F4A800EE511F /* Core Data */,
+				E4B4EE181864F4A800EE511F /* DB Classes */,
 				E4B4EDB21864538F00EE511F /* CoreDataTableViewController */,
 				E4B4ED8A1864522D00EE511F /* Main_iPad.storyboard */,
 				E4B4ED871864522D00EE511F /* Main_iPhone.storyboard */,
@@ -259,7 +259,7 @@
 			name = Helper;
 			sourceTree = "<group>";
 		};
-		E4B4EE181864F4A800EE511F /* Core Data */ = {
+		E4B4EE181864F4A800EE511F /* DB Classes */ = {
 			isa = PBXGroup;
 			children = (
 				E4B4EDEE18645EB200EE511F /* TopRegions.xcdatamodeld */,
@@ -276,7 +276,7 @@
 				E4B4EE431865F03700EE511F /* Region.h */,
 				E4B4EE441865F03700EE511F /* Region.m */,
 			);
-			name = "Core Data";
+			name = "DB Classes";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

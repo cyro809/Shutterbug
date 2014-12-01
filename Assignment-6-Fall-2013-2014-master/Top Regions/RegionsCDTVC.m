@@ -75,8 +75,6 @@
 - (void)prepareViewController:(id)vc forSegue:(NSString *)segueIdentifer fromIndexPath:(NSIndexPath *)indexPath
 {
     Region *region = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    // note that we don't check the segue identifier here
-    // probably fine ... hard to imagine any other way this class would segue to PhotosByRegionCDTVC
 
     if ([vc isKindOfClass:[PhotosByRegionCDTVC class]]) {
         PhotosByRegionCDTVC *pbrcdtvc = (PhotosByRegionCDTVC *)vc;
